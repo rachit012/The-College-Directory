@@ -1,4 +1,5 @@
 import { colleges } from "./data/colleges";
+import CollegeCard from "./components/CollegeCard";
 
 export default function App() {
   return (
@@ -8,7 +9,11 @@ export default function App() {
           College Directory
         </h1>
 
-        <pre>{JSON.stringify(colleges, null, 2)}</pre>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {colleges.map(college => (
+            <CollegeCard key={college.id} college={college} />
+          ))}
+        </div>
       </div>
     </div>
   );
