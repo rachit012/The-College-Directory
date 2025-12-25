@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { colleges } from "./data/colleges";
 import CollegeCard from "./components/CollegeCard";
+import SearchInput from "./components/SearchInput";
+import SortButton from "./components/SortButton";
 
 export default function App() {
   const [search, setSearch] = useState("");
@@ -20,20 +22,14 @@ export default function App() {
         </h1>
 
         <div className="flex flex-col sm:flex-row gap-4 mb-6">
-          <input
-            type="text"
-            placeholder="Search college by name..."
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-            className="border p-2 rounded w-full sm:w-1/2"
+          <SearchInput
+            search={search}
+            onSearchChange={setSearch}
           />
 
-          <button
-            onClick={() => setSortByFees(true)}
-            className="bg-orange-400 text-white px-4 py-2 rounded"
-          >
-            Sort by Fees (Low to High)
-          </button>
+          <SortButton
+            onSort={() => setSortByFees(true)}
+          />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
